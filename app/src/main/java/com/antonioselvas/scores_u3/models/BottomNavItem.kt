@@ -1,4 +1,4 @@
-package com.antonioselvas.scores_u3.model
+package com.antonioselvas.scores_u3.models
 import androidx.compose.ui.graphics.vector.ImageVector
 
 
