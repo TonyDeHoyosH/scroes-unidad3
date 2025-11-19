@@ -3,12 +3,8 @@ package com.antonioselvas.scores_u3.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PeopleAlt
-import androidx.compose.material.icons.filled.PersonAdd
-import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.PeopleAlt
-import androidx.compose.material.icons.outlined.PersonAdd
-import androidx.compose.material.icons.outlined.WbSunny
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
@@ -21,7 +17,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
-import com.antonioselvas.scores_u3.model.BottomNavItem
+import com.antonioselvas.scores_u3.models.BottomNavItem
 
 
 @Composable
