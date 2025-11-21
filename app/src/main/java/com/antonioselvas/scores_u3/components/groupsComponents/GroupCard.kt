@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.sp
 fun GroupCard(
     group: String,
     grade: String,
-    average: Number,
-    numberStudents: Number,
+    average: Int,
+    numberStudents: Int,
     borderColor: Color,
     onClick: () -> Unit
 ){

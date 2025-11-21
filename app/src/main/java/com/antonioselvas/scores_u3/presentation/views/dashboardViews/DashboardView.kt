@@ -58,7 +58,6 @@ fun DashboardView(navController: NavHostController, studentViewModel: StudentVie
             }
         }
     ) {
-
         DashboardContent(it, studentViewModel)
     }
 }
@@ -89,6 +88,8 @@ fun DashboardContent(paddingValues: PaddingValues, studentViewModel: StudentView
         }
         when (selectedIndex) {
             0 -> ShowStudentsGroupA(studentViewModel)
+            1 -> ShowStudentsGroupB(studentViewModel)
+            3 -> ShowStudentsGroupC(studentViewModel)
         }
     }
 }
@@ -100,6 +101,42 @@ fun ShowStudentsGroupA(studentViewModel: StudentViewModel) {
             .padding(18.dp)
     ) {
         items(studentViewModel.groupA){ student ->
+            StudentComponent(
+                name = student.name,
+                lastName = student.lastName,
+                score = student.score,
+                borderColor = Color.Green,
+                bgColor = MaterialTheme.colorScheme.onSurface
+            )
+        }
+    }
+}
+
+@Composable
+fun ShowStudentsGroupB(studentViewModel: StudentViewModel) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+            .padding(18.dp)
+    ) {
+        items(studentViewModel.groupB){ student ->
+            StudentComponent(
+                name = student.name,
+                lastName = student.lastName,
+                score = student.score,
+                borderColor = Color.Green,
+                bgColor = MaterialTheme.colorScheme.onSurface
+            )
+        }
+    }
+}
+
+@Composable
+fun ShowStudentsGroupC(studentViewModel: StudentViewModel) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
+            .padding(18.dp)
+    ) {
+        items(studentViewModel.groupC){ student ->
             StudentComponent(
                 name = student.name,
                 lastName = student.lastName,

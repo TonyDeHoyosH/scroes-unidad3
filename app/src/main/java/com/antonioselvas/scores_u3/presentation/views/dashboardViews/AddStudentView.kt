@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.antonioselvas.scores_u3.components.Dropdown
 import com.antonioselvas.scores_u3.viewmodel.StudentViewModel
 
 
@@ -58,10 +59,11 @@ fun ContentAdd(
     viewModel: StudentViewModel,
     navControler: NavController
 ){
+    var group by remember { mutableStateOf("") }
+
     var name by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var grade by remember { mutableStateOf("") }
-    var group by remember { mutableStateOf("") }
     var score by remember { mutableStateOf("") }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -96,14 +98,9 @@ fun ContentAdd(
                 Text("Grado")
             }
         )
-        OutlinedTextField(
-            value = group,
-            onValueChange = {
-                group = it
-            },
-            label = {
-                Text("Grupo")
-            }
+        Dropdown(
+            mSelectedText = group,
+            onSelected = { option -> group = option },
         )
         OutlinedTextField(
             value = score,

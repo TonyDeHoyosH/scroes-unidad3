@@ -2,24 +2,12 @@ package com.antonioselvas.scores_u3.viewmodel
 
 
 import androidx.lifecycle.ViewModel
+import com.antonioselvas.scores_u3.models.Group
+import com.antonioselvas.scores_u3.models.Groups
+import com.antonioselvas.scores_u3.models.ListOfTopStudents
 import com.antonioselvas.scores_u3.models.Student
+import com.antonioselvas.scores_u3.models.TopStudent
 
-
-data class Groups(
-    val groupA: MutableList<Student>,
-    val groupB: MutableList<Student>,
-    val groupC: MutableList<Student>
-)
-
-data class ListOfTopStudents(
-    val topBest: MutableList<TopStudent>,
-    val topWorst: MutableList<TopStudent>
-)
-data class TopStudent(
-    val name: String,
-    val lastName: String,
-    val score: Float
-)
 
 class StudentViewModel : ViewModel(){
 
@@ -32,14 +20,40 @@ class StudentViewModel : ViewModel(){
     private var _groupC: MutableList<Student> = mutableListOf()
     val groupC: MutableList<Student> = _groupC
 
-    fun getAllGroups(): Groups {
+    fun getUniqueGrades(): List<Int> {
+        val allStudents = groupA + groupB + groupC
+        return allStudents.map { it.grade }.distinct().sorted()
+    }
+
+    fun getGroupsByGrade(grade: Int): Groups {
         return Groups(
-            groupA = groupA,
-            groupB = groupB,
-            groupC = groupC
+            groupA = Group(
+                group = "A",
+                numberStudents = groupA.filter { it.grade == grade }.size,
+                listOfStudents = groupA.filter { it.grade == grade }
+            ),
+            groupB = Group(
+                group = "B",
+                numberStudents = groupB.filter { it.grade == grade }.size,
+                listOfStudents = groupB.filter { it.grade == grade }
+            ),
+            groupC = Group(
+                group = "C",
+                numberStudents = groupC.filter { it.grade == grade }.size,
+                listOfStudents = groupC.filter { it.grade == grade }
+            )
         )
     }
 
+    fun getAverageByGradeAndGroup(grade: Int, group: String): Float {
+        val students = when(group) {
+            "A" -> groupA.filter { it.grade == grade }
+            "B" -> groupB.filter { it.grade == grade }
+            "C" -> groupC.filter { it.grade == grade }
+            else -> emptyList()
+        }
+        return if (students.isEmpty()) 0f else students.map { it.score }.average().toFloat()
+    }
     fun addStudent(name: String,lastName: String,grade: Int,group: String,score: Float){
         var id: String = ""
         when (group){
@@ -65,7 +79,7 @@ class StudentViewModel : ViewModel(){
 
     }
 
-    fun getGroupA(): ListOfTopStudents{
+    fun getGroupA(): ListOfTopStudents {
         val topBest: MutableList<TopStudent> = mutableListOf()
         val topWorst: MutableList<TopStudent> = mutableListOf()
         groupA.forEach { student ->
@@ -148,6 +162,8 @@ class StudentViewModel : ViewModel(){
             topWorst = topWorst
         )
     }
+
+
 
 
 
