@@ -8,3 +8,14 @@ data class Student(
     val group: String,
     val score: Float
 )
+
+
+data class ListOfTopStudents(
+    val topBest: MutableList<TopStudent>,
+    val topWorst: MutableList<TopStudent>
+)
+data class TopStudent(
+    val name: String,
+    val lastName: String,
+    val score: Float
+)

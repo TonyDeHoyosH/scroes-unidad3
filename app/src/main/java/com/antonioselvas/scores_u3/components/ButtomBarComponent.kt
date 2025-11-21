@@ -18,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import com.antonioselvas.scores_u3.models.BottomNavItem
+import com.antonioselvas.scores_u3.presentation.views.groupsViews.GROUP_ROUTE
 
 
 @Composable
@@ -30,7 +31,7 @@ fun NavBar(navController: NavController){
             hasNews = false,
         ),
         BottomNavItem(
-            title = "Groups",
+            title = GROUP_ROUTE,
             selectedIcon = Icons.Filled.PeopleAlt,
             unselectedIcon = Icons.Outlined.PeopleAlt,
             hasNews = false,
